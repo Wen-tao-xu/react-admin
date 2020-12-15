@@ -27,6 +27,7 @@ class Login extends Component {
 
   onFinish = values => {
     console.log('success', values)
+    localStorage.setItem('react-user', JSON.stringify(values))
     this.enterLoading()
     this.timer = setTimeout(() => {
       message.success('登录成功')
