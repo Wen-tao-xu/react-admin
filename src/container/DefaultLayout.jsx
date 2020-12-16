@@ -3,14 +3,24 @@ import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
 import { Layout, BackTop } from 'antd'
 import routes from '@/routes'
 
+import Aside from './Aside'
+
 const { Content } = Layout
 
 class DefaultLayout extends Component {
+
+  state = {
+    show: true,
+    menu: [],
+  }
+
   render() {
+    let { menuClick, menuToggle } = this.props
     let { auth } = JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : ''
     return (
       <Layout className="app">
         <BackTop />
+        <Aside menuToggle={menuToggle} menu={this.state.menu} />
         <Content className="content">
           <Switch>
             {routes.map(item => {
